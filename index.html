@@ -20,9 +20,9 @@
     <div id="results" class="output"></div>
 
     <script>
-    
+        //http://localhost:8888/.netlify/functions/run_script
         async function fetchTrends() {
-            const response = await fetch('/.netlify/functions/run_script');
+            const response = await fetch('http://localhost:3001/run_script');
             const data = await response.json();
             console.log(data);
             const timestamp = new Date().toLocaleString(); 
