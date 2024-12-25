@@ -1,0 +1,8 @@
+[build]
+  functions = "functions" # Specifies the folder for serverless functions
+  publish = "./"          # Points to the directory containing `index.html`
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
