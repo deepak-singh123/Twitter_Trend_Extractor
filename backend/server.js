@@ -8,7 +8,7 @@ import ProxyMesh from './proxymesh.js';
 
 dotenv.config();
 const app = express();
-app.use(cors());
+app.use(cors({origin:"https://twittertrendsextractor.netlify.app"}));
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('Database connected'))
