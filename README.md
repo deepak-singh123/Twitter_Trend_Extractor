@@ -32,7 +32,7 @@ install necessary nodemodules
     
 add .env file 
 with following credentials
-MONGO_URI='mongodb+srv://naman330:%23Naman9696@trending.fpusb.mongodb.net/Trending'
+MONGO_URI= //database url (Mongodb)
 
 PORT= 3001 //exmple
 
