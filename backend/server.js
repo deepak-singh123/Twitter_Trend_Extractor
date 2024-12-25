@@ -10,11 +10,10 @@ dotenv.config();
 const app = express();
 app.use(cors());
 
-mongoose.connect(process.env.MONGO_URL, { dbName: 'TrendingTopic' })
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('Database connected'))
   .catch((e) => console.log('Database connection error:', e));
 
-const proxy = new ProxyMesh(process.env.PROXY_USERNAME, process.env.PROXY_PASSWORD);
 
 async function storeResults(data) {
   const { topics, ipAddress } = data;
@@ -47,6 +46,7 @@ function getRandomProxy() {
 }
 
 app.get('/run_script', async (req, res) => {
+  console.log("inside run_script");
   try {
     const proxy = `http://${process.env.PROXY_USERNAME}:${process.env.PROXY_PASSWORD}@${getRandomProxy()}`;
     console.log(`Using Proxy: ${proxy}`);

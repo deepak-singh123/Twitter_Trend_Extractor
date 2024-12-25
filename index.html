@@ -20,8 +20,9 @@
     <div id="results" class="output"></div>
 
     <script>
+    
         async function fetchTrends() {
-            const response = await fetch('https://twittertrendsextractor.netlify.app/.netlify/functions/connect-mongo');
+            const response = await fetch('https://twittertrendsextractor.netlify.app/run_script');
             const data = await response.json();
             console.log(data);
             const timestamp = new Date().toLocaleString(); 
