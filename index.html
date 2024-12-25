@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter Trends</title>
+    <style>
+        .output {
+            margin-top: 20px;
+        }
+        .loading {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Click below to fetch Twitter trends</h1>
+    <button onclick="fetchTrends()">Fetch Trends</button>
+
+    <div id="results" class="output"></div>
+
+    <script>
+        async function fetchTrends() {
+            const response = await fetch('http://localhost:3001/run_script');
+            const data = await response.json();
+            console.log(data);
+            const timestamp = new Date().toLocaleString(); 
+
+           
+            const outputContent = `
+                <h2>These are the most happening topics as on ${timestamp}:</h2>
+                <ul>
+                    <li>${data.trends[0]}</li>
+                    <li>${data.trends[1]}</li>
+                    <li>${data.trends[2]}</li>
+                    <li>${data.trends[3]}</li>
+                    <li>${data.trends[4]}</li>
+                </ul>
+                <p>The IP address used for this query was: ${data.ip_address}</p>
+
+                <h3>Here’s a JSON extract of this record from the MongoDB:</h3>
+                <pre>${JSON.stringify(data, null, 2)}</pre>
+                <button onclick="fetchTrends()">Click here to run the query again</button>
+            `;
+
+            document.getElementById("results").innerHTML = outputContent;
+        }
+    </script>
+</body>
+</html>
