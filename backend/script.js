@@ -32,7 +32,7 @@ async function fetchTrendingTopics(proxy, twitterEmail, twitterPassword, twitter
       await driver.get('https://twitter.com/login');
       console.log('Navigated to Twitter login page.');
   
-      const emailField = await driver.wait(until.elementLocated(By.name('text')), 20000);
+      const emailField = await driver.wait(until.elementLocated(By.name('text')), 30000);
       await emailField.sendKeys(twitterEmail, '\n');
       console.log('Entered email.');
   
@@ -47,11 +47,11 @@ async function fetchTrendingTopics(proxy, twitterEmail, twitterPassword, twitter
         console.log('Username input not required.');
       }
   
-      const passwordField = await driver.wait(until.elementLocated(By.name('password')), 20000);
+      const passwordField = await driver.wait(until.elementLocated(By.name('password')), 30000);
       await passwordField.sendKeys(twitterPassword, '\n');
       console.log('Entered password.');
   
-      await driver.wait(until.urlContains('home'), 50000);
+      await driver.wait(until.urlContains('home'), 100000);
       console.log('Logged in successfully.');
   
       await driver.get('https://x.com/explore/tabs/trending');
