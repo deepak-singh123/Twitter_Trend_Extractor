@@ -2,14 +2,32 @@ import { Builder, By, until } from 'selenium-webdriver';
 import { ProxyAgent } from 'proxy-agent';
 import dotenv from 'dotenv';
 import axios from 'axios';
+import chrome from 'chrome-aws-lambda';  // Required for headless Chrome support in Render
 
 dotenv.config();
 
 async function fetchTrendingTopics(proxy, twitterEmail, twitterPassword, twitterUsername) {
   let driver;
   try {
+    // Use chrome-aws-lambda's default options for headless Chrome
+    const options = new chrome.Options();
+
+    // Add Chrome arguments necessary for headless operation on Render
+    options.addArguments(
+      '--headless',
+      '--no-sandbox',
+      '--disable-dev-shm-usage',
+      '--disable-gpu',
+      '--remote-debugging-port=9222'
+    );
+
+    // Make sure to use the correct path to ChromeDriver in Render
+    const chromeDriverPath = '/opt/render/.cache/selenium/chrome/linux64/131.0.6778.204/chrome'; // Correct path for Render
+
     driver = await new Builder()
       .forBrowser('chrome')
+      .setChromeOptions(options)
+      .setChromeService(new chrome.ServiceBuilder(chromeDriverPath)) // Set ChromeDriver path
       .usingHttpAgent(new ProxyAgent(proxy))
       .build();
 
