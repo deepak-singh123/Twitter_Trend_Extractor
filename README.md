@@ -48,5 +48,11 @@ PROXY_USERNAME = //proxymesh username
 
 PROXY_PASSWORD = //proxymesh password
 
+AND FINALLY IN index.html     IN THIS LINE            
+"const response = await fetch('http://localhost:<PORT>/run_script');"IN PLACE OF PORT ADD YOUR PORT NUMBER AND RUN SERVER BY GOING INTO BACKEND FOLDER 
+
+AND TYPE NODE SERVER.JS AND IN FRONTEND RUN THE HTML FILE
+
+
 
 
