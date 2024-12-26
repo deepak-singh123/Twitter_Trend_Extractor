@@ -50,8 +50,10 @@ async function fetchTrendingTopics(proxy, twitterEmail, twitterPassword, twitter
       const passwordField = await driver.wait(until.elementLocated(By.name('password')), 30000);
       await passwordField.sendKeys(twitterPassword, '\n');
       console.log('Entered password.');
-  
-      await driver.wait(until.urlContains('home'), 100000);
+      console.log(await driver.getCurrentUrl()); // This will log the current URL
+      await driver.wait(until.urlContains('home'));
+      console.log(await driver.getCurrentUrl()); // This will log the current URL
+
       console.log('Logged in successfully.');
   
       await driver.get('https://x.com/explore/tabs/trending');
