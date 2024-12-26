@@ -39,7 +39,7 @@ async function fetchTrendingTopics(proxy, twitterEmail, twitterPassword, twitter
       try {
         const usernameField = await driver.wait(
           until.elementLocated(By.css('input[name="text"], input[data-testid="ocfEnterTextTextInput"]')),
-          5000
+          20000
         );
         console.log('Twitter requested username.');
         await usernameField.sendKeys(twitterUsername, '\n');
@@ -47,17 +47,17 @@ async function fetchTrendingTopics(proxy, twitterEmail, twitterPassword, twitter
         console.log('Username input not required.');
       }
   
-      const passwordField = await driver.wait(until.elementLocated(By.name('password')), 10000);
+      const passwordField = await driver.wait(until.elementLocated(By.name('password')), 20000);
       await passwordField.sendKeys(twitterPassword, '\n');
       console.log('Entered password.');
   
-      await driver.wait(until.urlContains('home'), 10000);
+      await driver.wait(until.urlContains('home'), 20000);
       console.log('Logged in successfully.');
   
       await driver.get('https://x.com/explore/tabs/trending');
       console.log('Navigated to trending topics.');
   
-      await driver.wait(until.elementLocated(By.css('span.r-18u37iz span.css-1jxf684')), 15000);
+      await driver.wait(until.elementLocated(By.css('span.r-18u37iz span.css-1jxf684')), 20000);
   
       const trends = await driver.findElements(By.css('span.r-18u37iz span.css-1jxf684'));
       const trendingTopics = [];
