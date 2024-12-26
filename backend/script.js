@@ -1,9 +1,9 @@
-import pkg from 'selenium-webdriver';
+import { Builder, By, until, Options } from 'selenium-webdriver';
 import { ProxyAgent } from 'proxy-agent';
 import dotenv from 'dotenv';
 import axios from 'axios';
-import chrome from 'selenium-webdriver/chrome.js'; // Import Chrome from selenium-webdriver
-const { Builder, By, until ,Options } = pkg;
+import chrome from 'selenium-webdriver/chrome'; // Import Chrome from selenium-webdriver
+
 dotenv.config();
 
 async function fetchTrendingTopics(proxy, twitterEmail, twitterPassword, twitterUsername) {
@@ -18,6 +18,7 @@ async function fetchTrendingTopics(proxy, twitterEmail, twitterPassword, twitter
       '--no-sandbox', 
       '--disable-dev-shm-usage',
       '--disable-gpu', 
+      '--disable-software-rasterizer',  // Disable software rasterizer for headless mode
       '--remote-debugging-port=9222'
     );
 
@@ -30,7 +31,11 @@ async function fetchTrendingTopics(proxy, twitterEmail, twitterPassword, twitter
     await driver.get('https://twitter.com/login');
     console.log('Navigated to Twitter login page.');
 
-    const emailField = await driver.wait(until.elementLocated(By.name('text')), 10000);
+    // Increase timeout and make the wait more reliable
+    const emailField = await driver.wait(
+      until.elementIsVisible(driver.findElement(By.name('text'))),
+      20000  // Increase timeout to 20 seconds
+    );
     await emailField.sendKeys(twitterEmail, '\n');
     console.log('Entered email.');
 
