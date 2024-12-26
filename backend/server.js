@@ -48,7 +48,7 @@ function getRandomProxy() {
 app.get('/run_script', async (req, res) => {
   console.log("inside run_script");
   try {
-    const proxy = `http://${process.env.PROXY_USERNAME}:${process.env.PROXY_PASSWORD}@us-ca.proxymesh.com:31280`;
+    const proxy = `http://${process.env.PROXY_USERNAME}:${process.env.PROXY_PASSWORD}@${getRandomProxy()}`;
     console.log(`Using Proxy: ${proxy}`);
 
     const twitterEmail = process.env.EMAIL;

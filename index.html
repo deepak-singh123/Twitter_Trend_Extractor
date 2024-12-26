@@ -23,7 +23,7 @@
         //https://twitter-trend-extractor.onrender.com/run_script
         //http://localhost:3001/run_script
         async function fetchTrends() {
-            const response = await fetch('https://twitter-trend-extractor.onrender.com/run_script');
+            const response = await fetch('http://localhost:3001/run_script');
             const data = await response.json();
             console.log(data);
             const timestamp = new Date().toLocaleString(); 
