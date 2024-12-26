@@ -32,7 +32,7 @@ async function fetchTrendingTopics(proxy, twitterEmail, twitterPassword, twitter
       await driver.get('https://twitter.com/login');
       console.log('Navigated to Twitter login page.');
   
-      const emailField = await driver.wait(until.elementLocated(By.name('text')), 10000);
+      const emailField = await driver.wait(until.elementLocated(By.name('text')), 20000);
       await emailField.sendKeys(twitterEmail, '\n');
       console.log('Entered email.');
   
