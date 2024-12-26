@@ -51,13 +51,13 @@ async function fetchTrendingTopics(proxy, twitterEmail, twitterPassword, twitter
       await passwordField.sendKeys(twitterPassword, '\n');
       console.log('Entered password.');
   
-      await driver.wait(until.urlContains('home'), 30000);
+      await driver.wait(until.urlContains('home'), 50000);
       console.log('Logged in successfully.');
   
       await driver.get('https://x.com/explore/tabs/trending');
       console.log('Navigated to trending topics.');
   
-      await driver.wait(until.elementLocated(By.css('span.r-18u37iz span.css-1jxf684')), 30000);
+      await driver.wait(until.elementLocated(By.css('span.r-18u37iz span.css-1jxf684')), 50000);
   
       const trends = await driver.findElements(By.css('span.r-18u37iz span.css-1jxf684'));
       const trendingTopics = [];
